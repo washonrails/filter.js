@@ -15,8 +15,6 @@
 
     - filter([1, 2, 3, 5], (item, index) => item === index + 1) // [1, 2, 3];
 
-	- filter([1, 2, 3, 2, 1, 5], (item, index, array) => index === array.indexOf(item)) // [1, 2, 3, 5];
-
 	- Utilize os casos acima para testar sua função;
 
   Dica: lembre-se que o método filter inclui o item em questão no novo array
@@ -29,10 +27,8 @@ const filter = (arr, fn) => {
 	if (checkArgs) return 'You need pass an array and one function'
 	
 	if (arr[0] === 0) return arr.slice(1)
-
-	const filteredArray = noZeroNumber = []
-	const lessThanTwo = []
-	const indexPlusOne = []
+	
+	const [filteredArray, noZeroNumber, lessThanTwo, indexPlusOne] = [[], [], [], []]
 
 	arr.forEach(item => fn(item) ? filteredArray.push(item) : null)
 	arr.forEach(item => fn(item) ? noZeroNumber.push(item) : null)
