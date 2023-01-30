@@ -24,15 +24,21 @@
 */
 
 const filter = (arr, fn) => {
+
+	const checkArgs = !Array.isArray(arr) || typeof fn !== 'function'
+	if (checkArgs) return 'You need pass an array and one function'
 	
-	const checkArgs = !Array.isArray(arr) || typeof fn !== "function"
-	if (checkArgs) return 'algo deu errado'
+	if (arr[0] === 0) return arr.slice(1)
 	
-	const filteredArray = [...arr]
-	if (filteredArray[0] === 0) return filteredArray.slice(1)
-	
-	
-	return fn(filteredArray)
+	const filteredArray = filteredArrayTwo = []
+
+	// for (const number of arr) fn(number) ? filteredArray.push(number) : null
+	arr.forEach((item, index, array) => fn(item) ? filteredArray.push(item) : null)
+	arr.forEach((item, index, array) => fn(item, index) ? filteredArrayTwo.push(item + index) : null)
+
+	return filteredArray, filteredArrayTwo
 }
 
-console.log(filter( [1,2,3], item => item)
+console.log(filter( [1,2,3,4,5,6], item => item <= 2))
+console.log(filter( [1,2,3,2,1,5], (item, index) => item === index + 1))
+// filter( [1,2,3], item => item < 2)
