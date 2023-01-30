@@ -29,16 +29,25 @@ const filter = (arr, fn) => {
 	if (checkArgs) return 'You need pass an array and one function'
 	
 	if (arr[0] === 0) return arr.slice(1)
-	
-	const filteredArray = filteredArrayTwo = []
 
-	// for (const number of arr) fn(number) ? filteredArray.push(number) : null
-	arr.forEach((item, index, array) => fn(item) ? filteredArray.push(item) : null)
-	arr.forEach((item, index, array) => fn(item, index) ? filteredArrayTwo.push(item + index) : null)
+	const filteredArray = noZeroNumber = []
+	const lessThanTwo = []
+	const indexPlusOne = []
 
-	return filteredArray, filteredArrayTwo
+	arr.forEach(item => fn(item) ? filteredArray.push(item) : null)
+	arr.forEach(item => fn(item) ? noZeroNumber.push(item) : null)
+	arr.forEach(item => fn(item) ? lessThanTwo.push(item) : null)
+	arr.forEach((item, index) => fn(item, index) ? indexPlusOne.push(item) : null)
+
+	return filteredArray, noZeroNumber, lessThanTwo, indexPlusOne
 }
 
-console.log(filter( [1,2,3,4,5,6], item => item <= 2))
-console.log(filter( [1,2,3,2,1,5], (item, index) => item === index + 1))
-// filter( [1,2,3], item => item < 2)
+const filteredArray = filter( [1, 2, 3], item => item)
+const noZero = filter( [0, 1, 2], item => item)
+const lessThanTwo= filter( [1, 2, 3], item => item < 2)
+const indexPlusOne = filter( [1, 2, 3, 5], (item, index) => item === index + 1)
+
+console.log(filteredArray)
+console.log(noZero)
+console.log(lessThanTwo)
+console.log(indexPlusOne)
