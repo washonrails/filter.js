@@ -28,22 +28,12 @@ const filter = (arr, fn) => {
 	
 	if (arr[0] === 0) return arr.slice(1)
 	
-	const [filteredArray, noZeroNumber, lessThanTwo, indexPlusOne] = [[], [], [], []]
+	const filteredArray = []
 
-	arr.forEach(item => fn(item) ? filteredArray.push(item) : null)
-	arr.forEach(item => fn(item) ? noZeroNumber.push(item) : null)
-	arr.forEach(item => fn(item) ? lessThanTwo.push(item) : null)
-	arr.forEach((item, index) => fn(item, index) ? indexPlusOne.push(item) : null)
+	arr.forEach((item, index, array) => fn(item, index, array) ? filteredArray.push(item) : null)
 
-	return filteredArray, noZeroNumber, lessThanTwo, indexPlusOne
+	return filteredArray
 }
 
-const filteredArray = filter( [1, 2, 3], item => item)
-const noZero = filter( [0, 1, 2], item => item)
-const lessThanTwo= filter( [1, 2, 3], item => item < 2)
-const indexPlusOne = filter( [1, 2, 3, 5], (item, index) => item === index + 1)
-
+const filteredArray = filter( [1, 2, 3], (item, index, array) => item === index + 1)
 console.log(filteredArray)
-console.log(noZero)
-console.log(lessThanTwo)
-console.log(indexPlusOne)
